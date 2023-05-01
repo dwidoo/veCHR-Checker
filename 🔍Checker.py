@@ -30,8 +30,24 @@ config = read_params(params_path)
 # Title
 st.title("🔍 veCHR Checker")
 
+# Check URL Params
+query_params = st.experimental_get_query_params()
+
+if not bool(query_params) == False:
+    if 'id' in query_params:
+        tokenid = int(query_params['id'][0])
+        index = 0
+    elif 'address' in query_params:
+        wallet_address = query_params['address'][0]
+        index = 1
+    else:
+        index = 0
+else:
+    index = 0
+
+
 # Select Button
-selection = st_btn_select(("Token ID", "Address"))
+selection = st_btn_select(("Token ID", "Address"), index=index)
 
 # CHR Price
 params = {
@@ -77,7 +93,13 @@ except Exception as e:
 
 # Token ID Search
 if selection == "Token ID":
-    tokenid = st.number_input("Your veCHR Token ID", min_value=1, format="%d")
+    
+    # URL Param Check
+    try:
+        if tokenid:
+            pass
+    except:
+        tokenid = st.number_input("Your veCHR Token ID", min_value=1, format="%d")
 
     # Read Data
     try:
@@ -138,7 +160,13 @@ if selection == "Token ID":
 
 # Address Search
 if selection == "Address":
-    wallet_address = st.text_input(
+
+    # URL Param Check
+    try:
+        if wallet_address:
+            pass
+    except:
+        wallet_address = st.text_input(
         label="Your wallet address",
         placeholder="Enter your wallet address",
         max_chars=42,
