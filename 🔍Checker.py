@@ -151,6 +151,8 @@ if selection == "Token ID":
     USD Value is just an estimate of CHR Price pulled from Firebird API.
             
     :red[If "Vote Reset" is No you cannot sell your veCHR unless you reset your vote.]
+    
+    :violet[If you found this useful you can buy me aka ALMIGHTY ABE a :coffee: at 0x5783Fb2f3d93364041d49097b66086703527AeaC]
             """
         )
 
